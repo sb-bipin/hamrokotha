@@ -36,14 +36,14 @@ class Image(models.Model):
     name = models.CharField(max_length=50, default=None)
     phone = models.IntegerField(default=None)
     img = models.ImageField(upload_to='images/', default=None)
-    Rooms = "Rooms"
-    Flat = "Flat"
-    House = "House"
-    Others = "Others"
-    propertychoice = [('Rooms', "Rooms"), ('Flat', "Flat"),
-                      ('House', "House"), ('Others', "Others")]
+    # Rooms = "Rooms"
+    # Flat = "Flat"
+    # House = "House"
+    # Others = "Others"
+    propertychoice = [('Room', "Rooms"), ('Flat', "Flats"),
+                      ('House', "Houses"), ('Other', "Others")]
     propertytype = models.CharField(
-        choices=propertychoice, max_length=10, default='Others')
+        max_length=20, choices=propertychoice, default='Other')
     descp = models.CharField(max_length=50, default=None)
 
     def _str_(self):
