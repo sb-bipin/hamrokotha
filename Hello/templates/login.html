@@ -1,0 +1,32 @@
+
+
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>User Form</title>
+     <link rel="stylesheet" href="\static\login.css">
+</head>
+<body>
+     <div class="loginbox my-5">
+          <img src="\static\images\user.png" class="user">
+          <h1>Login Here</h1>
+          <form action="#" method="POST">
+            {%csrf_token%}
+               <p>Username</p>     
+               <input type="text" name="username" id="username" placeholder="Enter Username">
+               <p>Password</p>
+               <input type="password" name="password" id="password" placeholder="Enter Password">
+               <input type="submit" name="submit" value="Login">
+               <a href="/contact">Lost your Password?</a><br>
+               <a href="/signup">Don't have an account?</a>
+          </form>
+     </div>
+</body>
+</html>
+
+
+{% endblock body %}

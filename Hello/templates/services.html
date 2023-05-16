@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title%} Services
+{% endblock title%}
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Django Display Images</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>{% include "dbImage.css" %}</style>
+
+
+</head>
+<body>
+  <div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+        <th>Title</th>
+        <th>Property Type</th>
+        <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% csrf_token %}  
+      {% for img in images %}  
+          <tr>
+            <td>{{img.name }} <br> {{img.phone}}</td>
+        <td><img src="{{img.img.url}}" width="120" float="right"/></td>
+          </tr>
+
+        {% endfor %} 
+      </tbody>
+    </table>	
+    </div></body>
+</html>
+
+{% endblock body %}
+

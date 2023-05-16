@@ -1,0 +1,227 @@
+ {% comment %} <html>
+     <head>
+          <title> Signup  </title>
+     </head>
+<body>
+
+     <form method="POST">
+          {%csrf_token%}
+          {{form.as_p}}
+
+          <input type='submit' name='submit' value='submit'>
+
+     </form>
+
+
+</body>
+</html> {% endcomment %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>User Form</title>
+     <link rel="stylesheet" href="\static\signup.css">
+</head>
+<body>
+     <div class="signinbox">
+          <img src="\static\images\user.png" class="user">
+          <h1>Signup Here</h1>
+          <form action="#" method="POST">
+               {%csrf_token%}
+               <p>Users Name</p>
+               <input type="text" name="username" placeholder="Enter Full Name">
+               <p>Address</p>
+               <input type="text" name="address" placeholder="Enter Address">
+               <p>Date of Birth</p>
+               <input type="date" name="dob" placeholder="Enter DOB">
+               <p>Email</p>
+               <input type="email" name="email" placeholder="Enter email"> <hr>
+               <p>Password</p>
+               <input type="password" name="password1" placeholder="Enter Password">
+               <p>Reinter Password</p>
+               <input type="password" name="password2" placeholder="Reinter Password">
+               {% comment %} Your password can’t be too similar to your other personal information.
+                    <p>Your password must contain at least 8 characters.</p>
+                    <p>Your password can’t be a commonly used password.</p>
+                    <p>Your password can’t be entirely numeric. </p> {% endcomment %}
+               <input type="submit" name="submit" value="Signup">
+               <input type="reset" name="submit" value="Reset">
+          </form>
+     </div>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} old form
+
+{% extends 'base.html' %} 
+
+{% block title %}
+    SignUp
+{% endblock title %}
+
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>User Form</title>
+     <link rel="stylesheet" href="\static\signup.css">
+      
+     <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: url(1.jpg);
+            background-size: cover;
+            font-family: sans-serif;
+       }
+       
+       .signinbox{
+            width: 320px;
+            height: 640px;
+            background: #000;
+            color: #fff;
+            top: 43%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-40%,-40%);
+            box-sizing: border-box;
+            padding: 45px;
+       }
+       
+       .user{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            position: absolute;
+            top: -40px;
+            left: calc(50% - 50px);
+       }
+       
+       h1{
+            margin: 0;
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 22px;    
+            color: blue;
+       }
+       
+       .signinbox p{
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+       }
+       
+       .signinbox input{
+            width: 100%;
+            margin-bottom: 10px;
+       }
+       
+       .signinbox input[type=text], input[type="date"], input[type="password"]
+       {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+       }
+       
+       select{
+            width: 100%;
+            margin-bottom: 10px;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+            color: #fff;
+       }
+       
+       select:hover{
+            background: #ff7200;
+            color: #000;
+       }
+       
+       .signinbox input[type="submit"]
+       {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: #ff7200;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+       }
+       
+       .signinbox input[type="submit"]:hover
+       {
+            cursor: pointer;
+            background: #ff7200;
+            color: #000;
+       }
+       .signinbox input[type="reset"]
+       {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: #ff7200;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+       }
+       
+       .signinbox input[type="reset"]:hover
+       {
+            cursor: pointer;
+            background: #ff7200;
+            color: #000;
+       }
+       
+    </style> 
+
+</head>
+<body>
+     <div class="signinbox my-5">
+          <img src="\static\images\user.png" class="user">
+          <h1>Signup Here</h1>
+          <form action="#" method="POST">
+            {% csrf_token %}
+               <p>User Name</p>
+               <input type="text" name="username" placeholder="Enter User Name">
+               <p>Address</p>
+               <input type="text" name="address" placeholder="Enter Address">
+               <p>Date of Birth</p>
+               <input type="date" name="dob" >
+               <p>Password</p>
+               <input type="password" name="passwords" placeholder="Enter Password">
+               <p>Reinter Password</p>
+               <input type="password" name="passwords" placeholder="Reinter Password"> 
+               <br><br><br>
+               <input type="submit" name="submit" value="Signup">
+               <input type="reset" name="submit" value="Reset">
+          </form> 
+     </div>
+</body>
+</html>
+
+
+{%endblock body%}
+ {% endcomment %}
+
