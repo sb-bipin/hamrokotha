@@ -9,7 +9,6 @@ from django.contrib import messages
 from .forms import signupform, ImageForm
 from django.views.decorators.csrf import csrf_protect
 from .models import Image
-from pprint import pprint
 
 
 def logout(request):
@@ -101,7 +100,6 @@ def gallery(request):
         else:
             # return HttpResponse('Not Successful ')
             print(form1.errors)
-            # pprint(globals())
     else:
         form1 = ImageForm()
     return render(request, "gallery.html", {"form": form1})

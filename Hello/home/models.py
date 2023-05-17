@@ -1,5 +1,5 @@
 from django.db import models
-
+from phone_field import PhoneField
 # Create your models here.
 
 
@@ -34,7 +34,8 @@ class Login(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=50, default=None)
-    phone = models.IntegerField(default=None)
+    phone = PhoneField(blank=True, help_text='Contact phone number')
+    # phone = models.CharField(max_length=20, default=None)
     img = models.ImageField(upload_to='images/', default=None)
     # Rooms = "Rooms"
     # Flat = "Flat"
