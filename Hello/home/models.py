@@ -34,8 +34,8 @@ class Login(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=50, default=None)
-    phone = PhoneField(blank=True, help_text='Contact phone number')
-    # phone = models.CharField(max_length=20, default=None)
+    # phone = PhoneField(blank=False, help_text='Contact phone number')
+    phone = models.CharField(max_length=10, default=None)
     img = models.ImageField(upload_to='images/', default=None)
     # Rooms = "Rooms"
     # Flat = "Flat"
