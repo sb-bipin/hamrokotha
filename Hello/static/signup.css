@@ -1,11 +1,11 @@
-body{
+body {
      margin: 0;
      padding: 0;
      background: url('1.jpg');
      font-family: sans-serif;
 }
 
-.signinbox{
+.signinbox {
      width: 320px;
      height: 640px;
      background: #000;
@@ -13,12 +13,12 @@ body{
      top: 50%;
      left: 50%;
      position: absolute;
-     transform: translate(-40%,-40%);
+     transform: translate(-40%, -40%);
      box-sizing: border-box;
      padding: 45px;
 }
 
-.user{
+.user {
      width: 90px;
      height: 90px;
      border-radius: 50%;
@@ -27,27 +27,28 @@ body{
      left: calc(50% - 50px);
 }
 
-h1{
+h1 {
      margin: 0;
      padding: 0 0 20px;
      text-align: center;
-     font-size: 22px;    
+     font-size: 22px;
      color: blue;
 }
 
-.signinbox p{
+.signinbox p {
      margin: 0;
      padding: 0;
      font-weight: bold;
 }
 
-.signinbox input{
+.signinbox input {
      width: 100%;
      margin-bottom: 10px;
 }
 
-.signinbox input[type=text], input[type="date"], input[type="password"]
-{
+.signinbox input[type=text],
+input[type="date"],
+input[type="password"] {
      border: none;
      border-bottom: 1px solid #fff;
      background: transparent;
@@ -58,8 +59,7 @@ h1{
 }
 
 
-.signinbox input[type="submit"]
-{
+.signinbox input[type="submit"] {
      border: none;
      outline: none;
      height: 40px;
@@ -69,14 +69,13 @@ h1{
      border-radius: 20px;
 }
 
-.signinbox input[type="submit"]:hover
-{
+.signinbox input[type="submit"]:hover {
      cursor: pointer;
      background: #ff7200;
      color: #000;
 }
-.signinbox input[type="reset"]
-{
+
+.signinbox input[type="reset"] {
      border: none;
      outline: none;
      height: 40px;
@@ -86,8 +85,7 @@ h1{
      border-radius: 20px;
 }
 
-.signinbox input[type="reset"]:hover
-{
+.signinbox input[type="reset"]:hover {
      cursor: pointer;
      background: #ff7200;
      color: #000;

@@ -95,8 +95,11 @@ def gallery(request):
     if request.method == 'POST':
         form1 = ImageForm(request.POST, request.FILES)
         if form1.is_valid():
+            # dump(form1)
             form1.save()
-            return HttpResponse('Successfully uploaded')
+            messages.success(
+                request, "Your information is submitted successfully. ")
+            # return HttpResponse('Successfully uploaded')
         else:
             # return HttpResponse('Not Successful ')
             print(form1.errors)

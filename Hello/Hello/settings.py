@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap5',
     'django_dump_die',
     'phone_field',
     'home.apps.HomeConfig',

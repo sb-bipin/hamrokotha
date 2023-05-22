@@ -1,65 +1,95 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title> Hamro Kotha | {% block title %} Gallery {% endblock title %} |</title>
-<link rel="stylesheet" href="\static\login.css">
+{% if messages %}
+{% for message in messages %}
 
-</head>
-<body>
-
-  <div class="loginbox my-5">
-    <img src="\static\images\user.png" class="user">
-    <h1>Insert Data Here</h1>
-    <form action="" method="POST" enctype="multipart/form-data">
-      {%csrf_token%}
-         
-        <label for="id_name">Name:</label>
-          <input type="text" name="name" maxlength="50" required id="id_name">
-       
-        <label for="id_phone">Phone no.</label>
-          <input type="tel" name="phone" maxlength="10" required id="id_phone"  pattern="[0-9]{10}" >
-
-        <label for="id_img">Image</label><br><br>
-          <input type="file" name="img" accept="image/*" required id="id_img">
-         
-          <label for="id_type">Property Type</label><br> <br>
-          <select style="height:25px" name="propertytype" required id="id_propertytype">
-            <option label="Select your property type" style="" ></option> 
-            <option value="Room">Room</option>
-            <option value="Flat">Flat</option>
-            <option value="House">House</option>
-            <option value="Other">Others</option>
-          </select> <br><br>
-
-        
-        <label for="id_desc">Description</label><br> <br>
-          <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc"> 
-            
-          </textarea><br><br><br><br>
-
-       
-        <input type="submit" name="submit" value="Upload">
-    </form>
+<div class="alert alert-{{ message.tags }} alert-dismissible">
+  <strong> {{ message }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 
+{% endfor %}
+{% endif %}
 
-</body>
-</html> 
+{%block body%}
 
-
-
-{% comment %} <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Hotel_image</title>
+  <meta charset="UTF-8">
+  <title> Hamro Kotha | {% block title %} Gallery {% endblock title %} |</title>
+  <link rel="stylesheet" href="\static\gallery.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
 </head>
+
 <body>
-<form method = "post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Upload</button>
-</form>
+
+
+
+
+
+
+
+  <div class="loginbox ">
+    {% comment %} <img src="\static\images\user.png" class="user"> {% endcomment %}
+    {% comment %} <h3>Insert Data Here</h3> {% endcomment %}
+    <form action="" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
+
+      <label for="id_name">Name:</label>
+      <input type="text" name="name" maxlength="50" required id="id_name">
+
+      <label for="id_phone">Phone no.</label>
+      <input type="tel" name="phone" maxlength="10" required id="id_phone" pattern="[0-9]{10}">
+
+      <label for="id_img">Image</label><br><br>
+      <input type="file" name="img" accept="image/*" required id="id_img">
+
+      <label for="id_type">Property Type</label><br> <br>
+      <select style="height:25px" name="propertytype" required id="id_propertytype">
+        <option label="Select your property type" style=""></option>
+        <option value="Room">Room</option>
+        <option value="Flat">Flat</option>
+        <option value="House">House</option>
+        <option value="Other">Others</option>
+      </select> <br><br>
+
+
+      <label for="id_desc">Description</label><br> <br>
+      <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
+
+          </textarea><br><br><br><br>
+
+
+      <input type="submit" name="submit" value="Upload">
+    </form>
+  </div>
+
+
 </body>
+
+</html>
+
+
+{% endblock body %}
+
+
+{% comment %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel_image</title>
+</head>
+
+<body>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+</body>
+
 </html> {% endcomment %}
