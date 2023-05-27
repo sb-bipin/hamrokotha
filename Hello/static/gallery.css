@@ -1,11 +1,16 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
-    /* background-color: #8d8787; */
+   background-color: #8d8787; 
     background: url(1.jpg);
     background-size: cover;
     font-family: sans-serif;
 }
+
+ .container {
+    background-color: transparent;
+}
+
 
 .loginbox {
     width: 320px;
@@ -52,7 +57,7 @@ h1 {
 input[type="password"] {
     border: none;
     border-bottom: 1px solid #fff;
-    /* background: fixed; */
+  background: fixed;
     outline: none;
     height: 40px;
     color: #000000;
@@ -88,4 +93,4 @@ input[type="password"] {
 
 #id_name {
     color: #000
-}
+} */

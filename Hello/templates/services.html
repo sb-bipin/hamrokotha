@@ -44,7 +44,8 @@
   
 
     {% csrf_token %}  
-    {% for img in images %}  
+    {% for img in images %} 
+     
     <div class="card px-5 pb-5 mx-5 mb-5 bg-primary " style="width:400px ">
       <img class="card-img-top" src="{{img.img.url}}" alt="Card image">
       <div class="card-body">

@@ -22,12 +22,7 @@ def home(request):
 
 
 def index(request):
-    context = {
-        'variable1': "This is first variable1.",
-        'variable2': "This is second variable2."
-
-    }
-    return render(request, "index.html", context)
+    return render(request, "index.html")
     # return HttpResponse("This is the homepage created from Django..! ")
 
 
