@@ -32,19 +32,25 @@ class Login(models.Model):
         return self.username
 
 
-class Image(models.Model):
+class RoomsDetails(models.Model):
     name = models.CharField(max_length=50, default=None)
-    # phone = PhoneField(blank=False, help_text='Contact phone number')
+    address = models.CharField(max_length=50, default=None)
     phone = models.CharField(max_length=10, default=None)
-    img = models.ImageField(upload_to='images/', default=None)
-    # Rooms = "Rooms"
-    # Flat = "Flat"
-    # House = "House"
-    # Others = "Others"
-    propertychoice = [('Room', "Rooms"), ('Flat', "Flats"),
-                      ('House', "Houses"), ('Other', "Others")]
-    propertytype = models.CharField(
-        max_length=20, choices=propertychoice, default='Other')
+    imgfield = models.ImageField(upload_to='images/', default=None)
+    price = models.CharField(max_length=5, default=None)
+    payingchoice = [('Monthly', 'Monthly'), ('Quarterly', 'Quarterly'),
+                    ('Semi-Annually', 'Semi-Annually'), ('Annually', 'Annually')]
+    payingmodel = models.CharField(
+        max_length=20, choices=payingchoice, default='Monthly')
+    attachedbathroomchoice = [('Yes', 'Yes'), ('No', 'No')]
+    attachedbathroom = models.CharField(
+        max_length=5, choices=attachedbathroomchoice, default='No')
+    wifiavailablechoice = [('Yes', 'No'), ('No', 'No')]
+    wifiavailable = models.CharField(
+        max_length=5, choices=wifiavailablechoice, default='No')
+    acfanchoice = [('AC', 'AC'), ('Fan', 'Fan')]
+    acfan = models.CharField(
+        max_length=5, choices=acfanchoice, default='Fan')
     descp = models.CharField(max_length=50, default=None)
 
     def _str_(self):

@@ -1,14 +1,14 @@
+from tkinter import Image
 from django.shortcuts import render, redirect
-from .forms import signupform
+from .forms import RoomsDetailsForm, signupform
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.shortcuts import redirect, render, HttpResponse
 from home.models import Contact
 from django.contrib import messages
-from .forms import signupform, ImageForm
+from .forms import signupform
 from django.views.decorators.csrf import csrf_protect
-from .models import Image
 
 
 def logout(request):
@@ -19,6 +19,10 @@ def logout(request):
 
 def home(request):
     return render(request, "index.html")
+
+
+# def gallery(request):
+#     return render(request, "gallery.html")
 
 
 def index(request):
@@ -87,8 +91,10 @@ def Login(request):
 
 @csrf_protect
 def gallery(request):
+    # dump(form1)
     if request.method == 'POST':
-        form1 = ImageForm(request.POST, request.FILES)
+        # dump(request)
+        form1 = RoomsDetailsForm(request.POST, request.FILES)
         if form1.is_valid():
             # dump(form1)
             form1.save()
@@ -96,8 +102,10 @@ def gallery(request):
                 request, "Your information is submitted successfully. ")
             # return HttpResponse('Successfully uploaded')
         else:
-            # return HttpResponse('Not Successful ')
+            dump(form1)
             print(form1.errors)
+            # dump(form1)
+            # return HttpResponse('Not Successful ')
     else:
-        form1 = ImageForm()
+        form1 = RoomsDetailsForm()
     return render(request, "gallery.html", {"form": form1})
