@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Image
+from .models import RoomsDetails
 
 
 class signupform(UserCreationForm):
@@ -31,7 +31,8 @@ class signupform(UserCreationForm):
         return user
 
 
-class ImageForm(forms.ModelForm):
+class RoomsDetailsForm(forms.ModelForm):
     class Meta:
-        model = Image
-        fields = ("name", "phone", "img", "propertytype", "descp")
+        model = RoomsDetails
+        fields = ("name", "address", "phone", "imgfield", "price",
+                  "payingmodel", "attachedbathroom", "wifiavailable", "acfan", "descp")
