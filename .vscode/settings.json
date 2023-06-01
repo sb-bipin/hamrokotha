@@ -2,5 +2,13 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "html.format.templating": true,
+    "terminal.explorerKind": "both",
+    "django.snippets.exclude": [
+        "cms",
+        "wagtail"
+    ],
+    "html.format.indentHandlebars": true,
+    "html.format.indentInnerHtml": true
 }

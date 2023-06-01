@@ -1,5 +1,7 @@
 from tkinter import Image
 from django.shortcuts import render, redirect
+
+from .models import RoomsDetails
 from .forms import RoomsDetailsForm, signupform
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import authenticate, login
@@ -31,8 +33,8 @@ def index(request):
 
 
 def services(request):
-    allimages = Image.objects.all()
-    return render(request, 'services.html', {'images': allimages})
+    allimages = RoomsDetails.objects.all()
+    return render(request, 'services.html', {'roomsdetails': allimages})
 
     # return render(request, "services.html")
     # return HttpResponse("This is the servicespage created from Django..! ")
