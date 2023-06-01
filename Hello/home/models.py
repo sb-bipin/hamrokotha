@@ -28,7 +28,7 @@ class Login(models.Model):
     username = models.CharField(max_length=122)
     password = models.CharField(max_length=121)
 
-    def _str_(self):
+    def __str__(self):
         return self.username
 
 
@@ -45,7 +45,7 @@ class RoomsDetails(models.Model):
     attachedbathroomchoice = [('Yes', 'Yes'), ('No', 'No')]
     attachedbathroom = models.CharField(
         max_length=5, choices=attachedbathroomchoice, default='No')
-    wifiavailablechoice = [('Yes', 'No'), ('No', 'No')]
+    wifiavailablechoice = [('Yes', 'Yes'), ('No', 'No')]
     wifiavailable = models.CharField(
         max_length=5, choices=wifiavailablechoice, default='No')
     acfanchoice = [('AC', 'AC'), ('Fan', 'Fan')]
@@ -53,5 +53,5 @@ class RoomsDetails(models.Model):
         max_length=5, choices=acfanchoice, default='Fan')
     descp = models.CharField(max_length=50, default=None)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
