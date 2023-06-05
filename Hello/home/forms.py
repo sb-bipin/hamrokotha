@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import RoomsDetails
+from .models import Rooms
 
 
 class signupform(UserCreationForm):
@@ -31,8 +31,21 @@ class signupform(UserCreationForm):
         return user
 
 
+# class RoomsDetailsForm(forms.ModelForm):
+#     class Meta:
+#         model = RoomsDetails
+#         fields = ("name", "address", "phone", "imgfield", "price",
+#                   "payingmodel", "attachedbathroom", "wifiavailable", "acfan", "descp")
+
+
+# class PropertydetailsForm(forms.ModelForm):
+#     class Meta:
+#         model= Property
+#         fields = ("name", "address", "phone",
+#                   "imgfield", "price", "payingmodel", "descp")
+
+
 class RoomsDetailsForm(forms.ModelForm):
     class Meta:
-        model = RoomsDetails
-        fields = ("name", "address", "phone", "imgfield", "price",
-                  "payingmodel", "attachedbathroom", "wifiavailable", "acfan", "descp")
+        model = Rooms
+        fields = '__all__'

@@ -1,13 +1,15 @@
 from tkinter import Image
 from django.shortcuts import render, redirect
 
-from .models import RoomsDetails
-from .forms import RoomsDetailsForm, signupform
+from .models import Rooms
+
+# from .models import RoomsDetails
+from .forms import signupform, RoomsDetailsForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.shortcuts import redirect, render, HttpResponse
-from home.models import Contact
+from home.models import Contact, Property, Rooms
 from django.contrib import messages
 from .forms import signupform
 from django.views.decorators.csrf import csrf_protect
@@ -33,7 +35,7 @@ def index(request):
 
 
 def services(request):
-    allimages = RoomsDetails.objects.all()
+    allimages = Property.objects.all()
     return render(request, 'services.html', {'roomsdetails': allimages})
 
     # return render(request, "services.html")
@@ -93,21 +95,21 @@ def Login(request):
 
 @csrf_protect
 def gallery(request):
-    # dump(form1)
+    # dump(gallery)
     if request.method == 'POST':
         # dump(request)
-        form1 = RoomsDetailsForm(request.POST, request.FILES)
-        if form1.is_valid():
-            # dump(form1)
-            form1.save()
+        form = RoomsDetailsForm(request.POST, request.FILES)
+        if form.is_valid():
+            # dump(form)
+            form.save()
             messages.success(
                 request, "Your information is submitted successfully. ")
             # return HttpResponse('Successfully uploaded')
         else:
-            dump(form1)
-            print(form1.errors)
-            # dump(form1)
+            # dump(form)
+            print(form.errors)
+            # dump(form)
             # return HttpResponse('Not Successful ')
     else:
-        form1 = RoomsDetailsForm()
-    return render(request, "gallery.html", {"form": form1})
+        form = RoomsDetailsForm()
+    return render(request, "gallery.html", {"form": form})

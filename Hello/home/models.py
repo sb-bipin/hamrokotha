@@ -13,16 +13,6 @@ class Contact(models.Model):
         return self.fullname
 
 
-# class Signup(models.Model):
-#     username = models.CharField(max_length=122)
-#     password = models.CharField(max_length=121)
-#     if password is None:
-#         password = "hamrokotha"
-
-#     def _str_(self):
-#         return self.username
-
-
 class Login(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=False),
     username = models.CharField(max_length=122)
@@ -32,7 +22,32 @@ class Login(models.Model):
         return self.username
 
 
-class RoomsDetails(models.Model):
+# class RoomsDetails(models.Model):
+#     name = models.CharField(max_length=50, default=None)
+#     address = models.CharField(max_length=50, default=None)
+#     phone = models.CharField(max_length=10, default=None)
+#     imgfield = models.ImageField(upload_to='images/', default=None)
+#     price = models.CharField(max_length=5, default=None)
+#     payingchoice = [('Monthly', 'Monthly'), ('Quarterly', 'Quarterly'),
+#                     ('Semi-Annually', 'Semi-Annually'), ('Annually', 'Annually')]
+#     payingmodel = models.CharField(
+#         max_length=20, choices=payingchoice, default='Monthly')
+#     attachedbathroomchoice = [('Yes', 'Yes'), ('No', 'No')]
+#     attachedbathroom = models.CharField(
+#         max_length=5, choices=attachedbathroomchoice, default='No')
+#     wifiavailablechoice = [('Yes', 'Yes'), ('No', 'No')]
+#     wifiavailable = models.CharField(
+#         max_length=5, choices=wifiavailablechoice, default='No')
+#     acfanchoice = [('AC', 'AC'), ('Fan', 'Fan')]
+#     acfan = models.CharField(
+#         max_length=5, choices=acfanchoice, default='Fan')
+#     descp = models.CharField(max_length=50, default=None)
+
+#     def __str__(self):
+#         return self.name
+
+
+class Property(models.Model):
     name = models.CharField(max_length=50, default=None)
     address = models.CharField(max_length=50, default=None)
     phone = models.CharField(max_length=10, default=None)
@@ -42,6 +57,18 @@ class RoomsDetails(models.Model):
                     ('Semi-Annually', 'Semi-Annually'), ('Annually', 'Annually')]
     payingmodel = models.CharField(
         max_length=20, choices=payingchoice, default='Monthly')
+    descp = models.CharField(max_length=50, default=None)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class Rooms(Property):
+    # property = models.ForeignKey(
+    # Property, on_delete=models.CASCADE, related_name='rooms')
     attachedbathroomchoice = [('Yes', 'Yes'), ('No', 'No')]
     attachedbathroom = models.CharField(
         max_length=5, choices=attachedbathroomchoice, default='No')
@@ -51,7 +78,8 @@ class RoomsDetails(models.Model):
     acfanchoice = [('AC', 'AC'), ('Fan', 'Fan')]
     acfan = models.CharField(
         max_length=5, choices=acfanchoice, default='Fan')
-    descp = models.CharField(max_length=50, default=None)
+    # propertyrooms = models.OneToOneField(
+    #     Property, on_delete=models.CASCADE, default=id, related_name='acfan')
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return f"Room {self.acfan} - Property: {self.property.name}"
