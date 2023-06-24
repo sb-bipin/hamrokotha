@@ -83,3 +83,19 @@ class Rooms(models.Model):
 
     # def __str__(self):
     #     return f"Room {self.acfan} - Property: {self.property.name}"
+
+
+class Houses(models.Model):
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name='houses', null=True, blank=True, default=None)
+    size = models.CharField(max_length=10, default=None)
+    totalrooms = models.CharField(max_length=3, default=None)
+
+
+class Flats(models.Model):
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name='flats', null=True, blank=True, default=None)
+    wifiavailablechoice = [('Yes', 'Yes'), ('No', 'No')]
+    wifiavailable = models.CharField(
+        max_length=5, choices=wifiavailablechoice, default='No')
+    totalrooms = models.CharField(max_length=3, default=None)

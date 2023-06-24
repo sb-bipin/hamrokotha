@@ -1,8 +1,7 @@
-from .forms import PropertyDetailsForm, RoomsDetailsForm
+from .forms import PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
 from tkinter import Image
 from django.shortcuts import render, redirect
 
-from .models import Rooms
 
 # from .models import RoomsDetails
 from .forms import signupform
@@ -120,25 +119,73 @@ def Login(request):
 def gallery(request):
     if request.method == 'POST':
         property_form = PropertyDetailsForm(request.POST, request.FILES)
-        rooms_form = RoomsDetailsForm(request.POST)
+        property_instance = property_form.save()
+        form_type = request.POST.get('form_type')
 
-        if property_form.is_valid() and rooms_form.is_valid():
-            # Save the Property form data to the database
-            property_instance = property_form.save()
-            # Create a Rooms instance without saving to the database
-            rooms_instance = rooms_form.save(commit=False)
-            rooms_instance.property = property_instance  # Set the foreign key relationship
-            rooms_instance.save()  # Save the Rooms instance with the foreign key relationship
-            messages.success(
-                request, "Your information is submitted successfully. ")
-            # Redirect to a success page or another view
-            # return redirect('property_list')
-        else:
-            print(property_form.errors)
-            print(rooms_form.errors)
+        if form_type == 'room':
+            form = RoomsDetailsForm(request.POST)
+            if form.is_valid():
+                room = form.save(commit=False)
+                # property_id = request.POST.get('property_id')
+                # property_obj = Property.objects.get(id=property_id)
+                room.property = property_instance
+                room.save()
+                messages.success(
+                    request, "Your information is submitted successfully. ")
+            else:
+                print(form.errors)
 
+        elif form_type == 'house':
+            form = HousesDetailsForm(request.POST)
+            if form.is_valid():
+                house = form.save(commit=False)
+                # property_id = request.POST.get('property_id')
+                # property_obj = Property.objects.get(id=property_id)
+                house.property = property_instance
+                house.save()
+                messages.success(
+                    request, "Your information is submitted successfully. ")
+            else:
+                print(form.errors)
     else:
         property_form = PropertyDetailsForm()
-        rooms_form = RoomsDetailsForm()
+        print(form.errors)
 
-    return render(request, 'gallery.html', {'property_form': property_form, 'rooms_form': rooms_form})
+    return render(request, 'gallery.html', {'property_form': property_form})
+
+
+# @csrf_protect
+# def gallery(request):
+#     if request.method == 'POST':
+#         property_form = PropertyDetailsForm(request.POST, request.FILES)
+#         rooms_form = RoomsDetailsForm(request.POST)
+#         houses_form = HousesDetailsForm(request.POST)
+
+#         if property_form.is_valid() and rooms_form.is_valid() and houses_form.is_valid():
+#             # Save the Property form data to the database
+#             property_instance = property_form.save()
+#             # Create a Rooms instance without saving to the database
+#             rooms_instance = rooms_form.save(commit=False)
+#             houses_instance = houses_form.save(commit=False)
+
+#             rooms_instance.property = property_instance  # Set the foreign key relationship
+#             houses_instance.property = property_instance
+
+#             rooms_instance.save()  # Save the Rooms instance with the foreign key relationship
+#             houses_instance.save()
+
+#             messages.success(
+#                 request, "Your information is submitted successfully. ")
+#             # Redirect to a success page or another view
+#             # return redirect('property_list')
+#         else:
+#             print(property_form.errors)
+#             print(rooms_form.errors)
+#             print(houses_form.errors)
+
+#     else:
+#         property_form = PropertyDetailsForm()
+#         rooms_form = RoomsDetailsForm()
+#         houses_form = HousesDetailsForm()
+
+#     return render(request, 'gallery.html', {'property_form': property_form, 'rooms_form': rooms_form, 'houses_form': houses_form})

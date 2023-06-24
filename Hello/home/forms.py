@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Rooms, Property
+from .models import Houses, Rooms, Property
 
 
 class signupform(UserCreationForm):
@@ -47,4 +47,16 @@ class PropertyDetailsForm(forms.ModelForm):
 class RoomsDetailsForm(forms.ModelForm):
     class Meta:
         model = Rooms
-        fields = '__all__'
+        fields = {"attachedbathroom", "wifiavailable", "acfan"}
+
+
+class HousesDetailsForm(forms.ModelForm):
+    class Meta:
+        model = Houses
+        fields = {"size", "totalrooms"}
+
+
+# class FlatsDetailsForm(forms.ModelForm):
+#     class Meta:
+#         model = Flats
+#         fields = '__all__'
