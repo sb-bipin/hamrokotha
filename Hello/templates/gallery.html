@@ -53,14 +53,14 @@
                   <div class="module bg-success">
                       <p><strong>Click button to add rooms.</strong></p>
                       <!-- Button to Open the Modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RoomModel">
                         Add Rooms
                         </button>
                   </div>
               </div>
 
             <!-- The Modal -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="RoomModel">
                 <div class="modal-dialog">
                 <div class="modal-content">
             
@@ -97,7 +97,7 @@
                             
                               <div class="d-flex">
                              <label for="id_type">paying Model:&nbsp;</label>
-                              <select style="height:25px" name="payingmodel" required id="id_payingmodel">
+                              <select style="height:25px" name="payingmodel" required id="id_payingmodel" >
                                 <option label="Select how you want payment" style=""></option>
                                 <option value="Monthly">Monthly</option>
                                 <option value="Quarterly">Quarterly</option>
@@ -105,7 +105,6 @@
                                 <option value="Annually">Annually</option>
                               </select> 
                             </div><br>
-
 
                             <div class="d-flex">
                               <label for="id_type">Attached Bathroom:&nbsp;</label>
@@ -131,7 +130,7 @@
                                              <option value="Fan">Fan</option>
                                                </select> </div><br>
 
-                              <label for="id_desc">Description</label><br>
+                                               <label for="id_desc">Description</label><br>
                               <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
                                </textarea><br><br>
                         
@@ -155,9 +154,95 @@
               <div class="col-sm-6 mt-4">
                   <div class="module bg-info">
                       <p><strong>Click button to add house.</strong></p>
-                      <a href="https://www.example.com" class="btn btn-primary">Add House</a>
-                  </div>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#HouseModel">
+                  Add House
+                  </button>               
+                   </div>
               </div>
+
+            <!-- The Modal -->
+            <div class="modal" id="HouseModel">
+              <div class="modal-dialog">
+              <div class="modal-content">
+          
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                  <h4 class="modal-title">Adding Houses</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+          
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                      <div class="loginbox ">
+ 
+                          <form action="#" method="POST" enctype="multipart/form-data">
+                            {%csrf_token%}
+                      
+                            <label for="id_name">Name:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="text" name="name" maxlength="50" required id="id_name"><br><br>
+                      
+                            <label for="id_name">Address:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="text" name="address" maxlength="50" required id="id_address"><br><br>
+                      
+                            <label for="id_phone">Phone no.:</label>
+                            <input type="tel" name="phone" maxlength="10" required id="id_phone" pattern="[0-9]{10}">
+                              <br><br>
+
+                            <div class="d-flex">
+                             <label for="id_img" >Image</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" name="imgfield" accept="image/*" required id="id_img" multiple>
+                            </div> <br>
+
+                            <label for="id_name">Price:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="number" name="price" maxlength="10" required id="id_price" pattern="[0-9]"><br><br>
+                          
+                            <div class="d-flex">
+                           <label for="id_type">paying Model:&nbsp;</label>
+                            <select style="height:25px" name="payingmodel" required id="id_payingmodel">
+                              <option label="Select how you want payment" style=""></option>
+                              <option value="Monthly">Monthly</option>
+                              <option value="Quarterly">Quarterly</option>
+                              <option value="Semi-Annually">Semi-Annually</option>
+                              <option value="Annually">Annually</option>
+                            </select> 
+                          </div><br>
+                        
+                        
+                          <label for="id_name">House Size:</label>
+                          <input type="number" name="size" maxlength="10" required id="id_size" pattern="[0-9]"><br><br>
+                        
+                          
+                          <label for="id_name">Total Rooms:</label>
+                          <input type="number" name="totalrooms" maxlength="10" required id="id_totalrooms" pattern="[0-9]"><br><br>
+                        
+
+                         
+                                  
+                           <label for="id_desc">Description</label><br>
+                          <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
+                          </textarea><br><br>
+                          
+                            <button type="submit" name="submit" class="btn btn-primary" >Submit</button>
+                          </form>
+                        </div> 
+                      </div>
+          
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
               <div class="col-sm-6">
                   <div class="module bg-warning">
                       <p><strong>Click button to add flat.</strong></p>
