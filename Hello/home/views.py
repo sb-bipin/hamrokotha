@@ -120,9 +120,11 @@ def gallery(request):
     if request.method == 'POST':
         property_form = PropertyDetailsForm(request.POST, request.FILES)
         property_instance = property_form.save()
-        form_type = request.POST.get('form_type')
+        # form_type = request.POST.get('attachedbathroom')
+        # form_type=
+        # print(form_type.errors)
 
-        if form_type == 'room':
+        if request.POST.get('attachedbathroom'):
             form = RoomsDetailsForm(request.POST)
             if form.is_valid():
                 room = form.save(commit=False)
@@ -135,7 +137,7 @@ def gallery(request):
             else:
                 print(form.errors)
 
-        elif form_type == 'house':
+        elif request.POST.get('size'):
             form = HousesDetailsForm(request.POST)
             if form.is_valid():
                 house = form.save(commit=False)
@@ -147,9 +149,10 @@ def gallery(request):
                     request, "Your information is submitted successfully. ")
             else:
                 print(form.errors)
+
     else:
         property_form = PropertyDetailsForm()
-        print(form.errors)
+        # print(form.errors)
 
     return render(request, 'gallery.html', {'property_form': property_form})
 
