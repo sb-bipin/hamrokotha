@@ -35,8 +35,11 @@ def index(request):
 
 
 def services(request):
-    allimages = Property.objects.all()
-    return render(request, 'services.html', {'roomsdetails': allimages})
+    filter_type = request.POST.get("filter")
+    print(filter_type)
+    # allimages = Property.objects.all()
+    allimages = Property.objects.order_by('-id')
+    return render(request, 'services.html', {'propertydetails': allimages})
 
     # return render(request, "services.html")
     # return HttpResponse("This is the servicespage created from Django..! ")
