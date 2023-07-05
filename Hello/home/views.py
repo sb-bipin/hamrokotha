@@ -1,6 +1,6 @@
 from .forms import PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
 from tkinter import Image
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 
 
 # from .models import RoomsDetails
@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.shortcuts import redirect, render, HttpResponse
-from home.models import Contact, Property
+from home.models import Contact, Property, Rooms
 from django.contrib import messages
 from .forms import signupform
 from django.views.decorators.csrf import csrf_protect
@@ -35,14 +35,31 @@ def index(request):
 
 
 def services(request):
-    filter_type = request.POST.get("filter")
+    filter_type = request.GET.get("filter")
     print(filter_type)
     # allimages = Property.objects.all()
-    allimages = Property.objects.order_by('-id')
+
+    if (filter_type == "ac"):
+        allimages = Property.objects.filter(
+            rooms__acfan="AC").prefetch_related('rooms').order_by("-id")
+    elif (filter_type == "lowhighprice"):
+        allimages = Property.objects.order_by('price')
+    elif (filter_type == "attachbathroom"):
+        allimages = Property.objects.filter(
+            rooms__attachedbathroom="Yes").prefetch_related('rooms').order_by('-id')
+    else:
+        allimages = Property.objects.all().order_by('-id')
     return render(request, 'services.html', {'propertydetails': allimages})
 
     # return render(request, "services.html")
     # return HttpResponse("This is the servicespage created from Django..! ")
+
+
+def service_details(request, service_id):
+    # services = get_object_or_404(Property, id=service_id)
+    services = Property.objects.filter(id=service_id)
+
+    return render(request, 'service_details.html', {'services': services})
 
 
 @csrf_protect

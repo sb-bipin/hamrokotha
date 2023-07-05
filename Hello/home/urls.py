@@ -34,6 +34,8 @@ urlpatterns = [
     path("signup", views.signup, name='signup'),
     path('gallery', views.gallery, name="gallery"),
     path('logout', views.logout, name="Logout"),
+    path('service_details/<int:service_id>/',
+         views.service_details, name='service_details'),
 
 
 ]
