@@ -77,62 +77,64 @@
 
     
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Service Page</title>
+   <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
     <body class="bg-info">
-        <div class="container mt-2 ">
-
-
-          <div class="row">
-
-
-            <div class="dropdown mb-3 ">
-              <button type="button" class="btn btn-dark dropdown-toggle float-right " data-bs-toggle="dropdown">
+        
+    <div class="container mt-2 ">
+      <div class="row">
+       
+        <div class="dropdown mb-3 text-center ml-5">
+              <button type="button" class="btn btn-dark dropdown-toggle rounded-rectangle  " data-bs-toggle="dropdown">
                 Filter 
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" name="filter1" value="price" href="#">Low-High Price</a></li>
-                <li><a class="dropdown-item" name="filter2" value="ac" href="#">AC Only</a></li>
-                <li><a class="dropdown-item" name="filter3" value="attachedbathroom" href="#">Attached Bathroom only </a></li>
+                <li><a class="dropdown-item" href="?filter=lowhighprice">Low-High Price</a></li>
+                <li><a class="dropdown-item" href="?filter=ac">AC Only</a></li>
+                <li><a class="dropdown-item"  href="?filter=attachbathroom">Attached Bathroom only </a></li>
               </ul>
-            </div>
+        </div>
   
 
 
-                <div class="col-lg-8">
-                    <div class="row">
-                        {% for service in propertydetails %}
-                        <div class="col-md-4 mb-4">
-                            {% comment %} <a href="{% url 'gallery' service.id %}" class="thumbnail-link"> {% endcomment %}
-                                <div class="card">
-                                    <img src="{{ service.imgfield.url }}" alt="image" class="card-img-top img-fluid" style="width: 300px; height: 200px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ service.name }}</h5>
-                                        <p class="card-text">{{ service.descp }}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
+        <div class="col-sm col-lg-9 col-md-5">
+
+         
+          <div class="row">
+
+            {% for service in propertydetails %}
+              <div class="col-sm col-lg-4 col-md-4 mb-4">
+              <div class="card">
+                <img src="{{ service.imgfield.url }}" alt="image" class="card-img-top img-fluid" style="width: 320px; height: 200px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ service.name|title }}</h5>
+                    <p class="card-text">{{ service.phone }}<br>Address:  {{ service.address }} <br> ₨. {{ service.price }}</p>
+                     {% for room in service.rooms.all %}
+                      <p class="card-text">AttachedRoom: {{ room.attachedbathroom }} <br> AC/Fan: {{ room.acfan }} <br> WiFi: {{ room.wifiavailable }}</p>
+                      {% endfor %}
+                      <a href="{% url 'service_details' service.id %}" class="btn btn-primary">See More</a>
                 </div>
+               </div>
+                           
+              </div>
+             {% endfor %}
+            </div> 
+            
+        </div>
 
                 <!--footer-->
 
-                <div class="col-lg-4 text-center mt-5 ">
-                    <div class="contact-info " style="background-color:rgb(20,150,120);border-radius:20px">
-                        <h2>Contact Us</h2>
-                        <p>Phone: +977-9805762331</p>
-                        <p>Email: hamrokotha@gmail.com</p>
-                        <!-- Add more contact details as needed -->
-                        <h2>Our Services</h2>
-                        <p>※Houses</p>
-                        <p>※Rooms</p>
-                        <p>※Flats</p>
+        <div class="col-lg-3 col-md-6 text-center mt-5 ">
+           <div class="contact-info " style="background-color:rgb(20,150,120);border-radius:20px">
+                  <h2>Contact Us</h2>
+                  <p>Phone: +977-9805762331</p>
+                  <p>Email: hamrokotha@gmail.com</p>
+                  <!-- Add more contact details as needed -->
+                   <h2>Our Services</h2>
+                   <p>※Houses</p>
+                   <p>※Rooms</p>
+                   <p>※Flats</p>
 
 
                     </div>
@@ -141,7 +143,7 @@
         </div>
     
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+                  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     </body>
     </html>
     
@@ -152,8 +154,5 @@
 
 
 
-  {% comment %} </body>
-
-</html> {% endcomment %}
 
 {% endblock body %}
