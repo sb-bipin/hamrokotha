@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-pimfz#y$m_bx@#m+-t#!-8nc$o1t9^dmn_kbc&g@t^e4!-chk7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+
+]
 
 
 # Application definition
@@ -135,16 +137,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 
 # Added manually
+STATIC_ROOT = os.path.join(BASE_DIR, '\static')
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
+    os.path.join(BASE_DIR, 'static'),]
 
 
 # Default primary key field type

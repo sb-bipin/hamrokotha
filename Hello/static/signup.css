@@ -1,21 +1,32 @@
 body {
      margin: 0;
      padding: 0;
-     background: url('1.jpg');
-     font-family: sans-serif;
+     background-color: #8bd8e6;
+     font-family: 'Times New Roman', Times, serif;
 }
 
+
+.container {
+     margin-bottom: 10px;
+}
+
+
 .signinbox {
+     border-radius: 15px;
      width: 320px;
-     height: 640px;
-     background: #000;
-     color: #fff;
-     top: 50%;
-     left: 50%;
+     height: 550px;
+     background: #b8a6a6;
+     color: #161515;
+     top: 41%;
+     left: 45%;
      position: absolute;
      transform: translate(-40%, -40%);
      box-sizing: border-box;
-     padding: 45px;
+     padding-top: 15px;
+     padding-left: 15px;
+     padding-right: 15px;
+
+     padding-bottom: 5px;
 }
 
 .user {
@@ -32,7 +43,7 @@ h1 {
      padding: 0 0 20px;
      text-align: center;
      font-size: 22px;
-     color: blue;
+     color: rgb(30, 30, 32);
 }
 
 .signinbox p {
@@ -48,13 +59,14 @@ h1 {
 
 .signinbox input[type=text],
 input[type="date"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
      border: none;
      border-bottom: 1px solid #fff;
      background: transparent;
      outline: none;
      height: 40px;
-     color: #fff;
+     color: #1a1818;
      font-size: 16px;
 }
 
