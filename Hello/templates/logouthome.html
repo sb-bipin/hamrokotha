@@ -1,3 +1,5 @@
+{% extends 'logoutnavbar.html' %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,38 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Hamro Kotha | {% block title %} Logout Home {% endblock title %} |  </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    
-   
+  
   </head>
-  <body><nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">| Hamro Kotha | </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
-          
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/login"> | Services |</a>
-          </li>
+  <body class="bg-darkwhite">
 
-          <li class="nav-item">
-            <a class="nav-link" href="/login">| Contact Us |</a>
-          </li>
-
-          
-
-
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
-          {% comment %} <button class="btn btn-outline-success" type="submit">Search</button> {% endcomment %}
-        </form>
       </div>
-      <div class="text-end" >
-       <a  href="/login"> <button type="button" class="btn btn-outline-light me-2">LogIn</button> </a>
+      <div class="text-end " >
+        <a  href="/signup"> <button type="button" class="btn btn-outline-dark  me-2">SignUp</button> </a>
+        {% comment %} <a href="#" <button type="button" class="btn btn-warning">Sign-up</button> </a> {% endcomment %}
+       </div>
+      <div class="text-end " >
+       <a  href="/login"> <button type="button" class="btn btn-outline-dark  me-2">LogIn</button> </a>
        {% comment %} <a href="#" <button type="button" class="btn btn-warning">Sign-up</button> </a> {% endcomment %}
       </div>
     
@@ -61,13 +42,22 @@
 
 {% block body %}
 
-<div class="row align-items-center g-lg-5 py-5" style="width: 100%;""}>
-  <div class="col-lg-7 text-center text-lg-start">
-    <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Get your Service</h1>
-    <p class="col-lg-10 fs-4">We find.We Serve.<br>We are on your Service.</p>
+<div class="row align-items-center g-lg-5 py-5 "  style="width: 100%;">
+  
+  <div class="col-lg-7 col-md-3 position-relative">
+    <img src="..\static\house.jpg" alt="Image" class="img-fluid d-block d-lg-none" style="width: 100%;">
+    <img src="..\static\house.jpg" alt="Image" class="img-fluid d-none d-lg-block" style="width: 120vh; height: 100vh;">
+    
   </div>
-  <div class="col-md-10 mx-auto col-lg-5">
-    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="login" method="POST">
+  
+  
+  
+  {% comment %}  <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Get your Service</h1>
+    <p class="col-lg-10 fs-4">We find.We Serve.<br>We are on your Service.</p>
+    {% endcomment %}
+
+  <div class="col-lg-5 col-md-9 mt-0  rounded-5" style="background-color: #e3f2fd;">
+    <form class="p-4 p-md-5 border-rounded-3 bg-body-tertiary" action="login" method="POST">
       {%csrf_token%}
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="username" name="username">
@@ -82,12 +72,15 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit" value="Login" href="#">Log In</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit" value="Login" >Log In</button>
       <hr class="my-4">
       <small class="text-body-secondary">By clicking Log In, you agree to the terms of use.</small>
     </form>
   </div>
 </div>
+<hr class="bg-dark h-150 ">
+
+
 <div class='footer'>
   {% include 'footer.html' %}
 </div>

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from home import views
 
+
 admin.site.site_header = "Hamro Kotha Admin Panel"
 admin.site.site_title = "HamroKotha Admin Portal"
 admin.site.index_title = "Welcome to Hamro_Kotha"
@@ -36,6 +37,8 @@ urlpatterns = [
     path('logout', views.logout, name="Logout"),
     path('service_details/<int:service_id>/',
          views.service_details, name='service_details'),
+    path('about', views.about, name="about"),
+    path('loginabout', views.loginabout, name="loginabout"),
 
 
 ]

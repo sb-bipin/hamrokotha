@@ -18,27 +18,30 @@
 
 
 
+{% block body %}
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
      <title>User Form</title>
-     <link rel="stylesheet" href="\static\signup.css">
+     <link rel="stylesheet" href="..\static\signup.css">
+     <link rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <body>
-     <div class="signinbox">
-          <img src="\static\images\user.png" class="user">
+     <div class="container">
+     <div class="signinbox border-rounded-3">
           <h1>Signup Here</h1>
           <form action="#" method="POST">
                {%csrf_token%}
-               <p>Users Name</p>
-               <input type="text" name="username" placeholder="Enter User Name">
+               <p>Username</p>
+               <input type="text" name="username" placeholder="Enter username">
                <p>Address</p>
                <input type="text" name="address" placeholder="Enter Address">
-               <p>Date of Birth</p>
-               <input type="date" name="dob" placeholder="Enter DOB">
+
                <p>Email</p>
-               <input type="email" name="email" placeholder="Enter email"> <hr>
+               <input type="email" name="email" placeholder="Enter email"> 
                <p>Password</p>
                <input type="password" name="password1" placeholder="Enter Password">
                <p>Reinter Password</p>
@@ -51,6 +54,14 @@
                <input type="reset" name="submit" value="Reset">
           </form>
      </div>
+</div>
+
+     
+
+
+<script src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
 </body>
 </html> 
 
@@ -58,6 +69,7 @@
 
 
 
+{% endblock body %}
 
 
 

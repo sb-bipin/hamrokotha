@@ -21,6 +21,14 @@ def logout(request):
 # Create your views here.
 
 
+def about(request):
+    return render(request, "about.html")
+
+
+def loginabout(request):
+    return render(request, "loginabout.html")
+
+
 def home(request):
     return render(request, "index.html")
 
