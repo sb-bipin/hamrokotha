@@ -16,7 +16,8 @@
     </style>
 
   </head>
-  <body><nav class="navbar navbar-expand-lg navbar-light  " style="background-color: 	#C0C0C0;">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color: 	#C0C0C0;">
     <div class="container">
       <a class="navbar-brand" href="/home">| Hamro Kotha | </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +61,31 @@
     
 
   </nav>
+
+
+
+  <section id="" class="p-0 text-white" style="background-color:rgb(189,183,107);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"><i class="fas fa-phone"></i> Contact: +977-9805762331</div>
+       
+        <div class="col-md-4">
+          {% if request.user.is_authenticated %}
+          Hi, {{ request.user.username }}. Good Morning..!
+          {% endif %}
+        </div>
+
+        
+        <div class="col-md-4">
+          <div class="text-right">
+          Address:  Dhangadhi-4,Kailali
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
 
 {% if messages %}

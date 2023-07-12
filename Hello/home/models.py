@@ -1,5 +1,5 @@
 from email.headerregistry import Group
-
+from django.contrib.auth.models import User
 from django.db import models
 from phone_field import PhoneField
 # Create your models here.
@@ -60,6 +60,8 @@ class Property(models.Model):
     payingmodel = models.CharField(
         max_length=20, choices=payingchoice, default='Monthly')
     descp = models.CharField(max_length=50, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='property', null=True, blank=True, default=None)
 
     # class Meta:
     #     abstract = True
