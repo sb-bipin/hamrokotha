@@ -64,6 +64,29 @@
 
 
 
+  <section id="" class="p-0 text-white" style="background-color:rgb(189,183,107);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"><i class="fas fa-phone"></i> Contact: +977-9805762331</div>
+       
+        <div class="col-md-4">
+          {% if request.user.is_authenticated %}
+          Hi, {{ request.user.username }}. Good Morning..!
+          {% endif %}
+        </div>
+
+        
+        <div class="col-md-4">
+          <div class="text-right">
+          Address:  Dhangadhi-4,Kailali
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
 
 {% if messages %}
   {% for message in messages %}
