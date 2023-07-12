@@ -64,7 +64,7 @@
 }
 
 .footer-clean .item.social>a:hover {
-  opacity: 0.9;
+  opacity: 1.5;
 }
 
 @media (max-width:991px) {

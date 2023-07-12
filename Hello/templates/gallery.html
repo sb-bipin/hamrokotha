@@ -264,46 +264,20 @@
 
 
 
+<!--footer-->
 
-{% comment %} 
-
-  <div class="loginbox ">
-   
-    <form action="" method="POST" enctype="multipart/form-data">
-      {%csrf_token%}
-
-      <label for="id_name">Name:</label>
-      <input type="text" name="name" maxlength="50" required id="id_name">
-
-      <label for="id_phone">Phone no.</label>
-      <input type="tel" name="phone" maxlength="10" required id="id_phone" pattern="[0-9]{10}">
-
-      <label for="id_img">Image</label><br><br>
-      <input type="file" name="img" accept="image/*" required id="id_img">
-
-      <label for="id_type">Property Type</label><br> <br>
-      <select style="height:25px" name="propertytype" required id="id_propertytype">
-        <option label="Select your property type" style=""></option>
-        <option value="Room">Room</option>
-        <option value="Flat">Flat</option>
-        <option value="House">House</option>
-        <option value="Other">Others</option>
-      </select> <br><br>
-
-
-      <label for="id_desc">Description</label><br> <br>
-      <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
-
-          </textarea><br><br><br><br>
-
-
-      <input type="submit" name="submit" value="Upload">
-    </form>
-  </div> {% endcomment %}
-
+<div class='footer mt-5'>
+  {% include 'footer.html' %}
+</div>
 
 
   {% endblock body %}
+
+
+
+
+
+
 </body>
 
 </html>

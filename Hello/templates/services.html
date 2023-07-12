@@ -1,4 +1,10 @@
+
+
+
 {% extends 'base.html' %}
+
+
+
 
 {% block title%} Services
 {% endblock title%}
@@ -64,7 +70,7 @@
           
           <div class="container">
       
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
               {% for service in propertydetails %}
 
               <div class="col">
@@ -121,7 +127,9 @@
 
 
 
-
+        <div class='footer mt-5'>
+          {% include 'footer.html' %}
+        </div>
 
 
 
