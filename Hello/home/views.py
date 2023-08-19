@@ -33,13 +33,14 @@ def home(request):
     return render(request, "index.html")
 
 
-# def gallery(request):
-#     return render(request, "gallery.html")
-
-
-def index(request):
-    return render(request, "index.html")
+# def index(request):
+#     userproperties = Property.objects.all()
+#     return render(request, "index.html", {'userproperties': userproperties})
     # return HttpResponse("This is the homepage created from Django..! ")
+def index(request):
+    user = request.user
+    userproperties = Property.objects.filter(user=user)
+    return render(request, "index.html", {'userproperties': userproperties})
 
 
 def services(request):
@@ -68,6 +69,11 @@ def service_details(request, service_id):
     services = Property.objects.filter(id=service_id)
 
     return render(request, 'service_details.html', {'services': services})
+
+
+def logoutService(request):
+    logoutServices = Property.objects.all()[:10]
+    return render(request, 'logoutService.html', {'logoutServices': logoutServices})
 
 
 @csrf_protect

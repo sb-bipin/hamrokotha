@@ -39,6 +39,8 @@ urlpatterns = [
          views.service_details, name='service_details'),
     path('about', views.about, name="about"),
     path('loginabout', views.loginabout, name="loginabout"),
+    path('logoutService', views.logoutService, name="logoutService"),
+
 
 
 ]

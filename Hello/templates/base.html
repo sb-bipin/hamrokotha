@@ -13,39 +13,39 @@
     
     <style>
       .navbar-nav li:hover a {
-        outline: 2px solid red;
-        font-size: 19px;
+        font-size: 28px;
       }
     </style>
 
+
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color: 	#C0C0C0;">
+    <nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color:rgb(189,183,107);">
     <div class="container">
-      <a class="navbar-brand" href="/home">| Hamro Kotha | </a>
+      <a class="navbar-brand " href="/home" style=" font-size:25px; font-weight:bold; font-family:Broadway,Brush Script MT,Times, sans-serif; "> Hamro Kotha </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
          
           
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="/services"> | Services |</a>
+            <a class="nav-link " aria-current="page" href="/services" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">  Services</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/contact">| Contact Us |</a>
+            <a class="nav-link" href="/contact" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">Contact Us </a>
           </li>
 
           <li class="nav-item">
 
-            <a class="nav-link" href="/gallery">| Post/Add Data |</a>
+            <a class="nav-link" href="/gallery" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">Post/Add Data </a>
           </li> 
          
           <li class="nav-item">
 
-            <a class="nav-link" href="/loginabout">| About Us |</a>
+            <a class="nav-link" href="/loginabout" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">About Us </a>
           </li> 
          
 
@@ -55,7 +55,6 @@
       </div>
       <div class="text-end" >
        <a  href="/logout"> <button type="button" class="btn btn-outline-dark me-2">LogOut</button> </a>
-       {% comment %} <a href="#" <button type="button" class="btn btn-warning">Sign-up</button> </a> {% endcomment %}
       </div>
     
 
@@ -67,10 +66,10 @@
 
 
 
-  <section id="" class="p-0 text-white" style="background-color:rgb(189,183,107);">
+  <section id="" class="p-0 text-white sticky-top" style="background-color: #6495ed;">
     <div class="container">
       <div class="row">
-        <div class="col-md-4"><img class="fas f" width=15 src="{% static 'call.jpeg' %}"></img> Contact: +977-9805762331</div>
+        <div class="col-md-4"><img class="fas f" width=15 ></img> Contact: +977-9805762331</div>
        
         <div class="col-md-4">
           {% if request.user.is_authenticated %}

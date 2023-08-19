@@ -10,7 +10,6 @@
 {% block body %}
 <html>
 <head>
-  {% comment %} <link rel="stylesheet" href="HomeBody.css">  {% endcomment %}
 
   <style> {% include 'HomeBody.css' %}  </style>
 
@@ -18,9 +17,34 @@
 <body>
   <div class="">
   <div class="HomeBody">
-    <img src="{% static 'house.jpg' %}" alt="image" class="img-fluid">
+    <img src="{% static 'house1.png' %}" alt="image" class="img-fluid">
     
   </div>
+
+
+
+
+  
+  {% block content %}
+  <h1>Your Properties</h1>
+  <ul>
+    {% for property in userproperties %}
+      <li>
+        <p>{{ property.name|title }}</p>
+        <p>{{ property.descp }}</p>
+      </li>
+    {% empty %}
+      <li>
+        <p>You have no properties.</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+
+
+
 
 <div class='footer'>
   {% include 'footer.html' %}
@@ -28,13 +52,10 @@
 </div>
 
 </body>
-
-
-
-
 </html>
 
 {% endblock body %}
+
 
 
 
