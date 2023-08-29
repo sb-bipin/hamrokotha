@@ -26,7 +26,7 @@ admin.site.index_title = "Welcome to Hamro_Kotha"
 
 
 urlpatterns = [
-    # path("",views.index,name='home'),
+    path("deleteservice", views.deleteservice, name='deleteservice'),
     path("", views.logout, name='logouthome'),
     path("home", views.home, name='home'),
     path("services", views.services, name='services'),

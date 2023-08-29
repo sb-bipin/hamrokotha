@@ -21,11 +21,6 @@
     <body  style="background:rgb(150,250,200);">
         
 
-       
-       
- 
-
-
         <div class="album py-2 bg-body-tertiary">
 
           <div class="dropdown mb-3 text-right mt-2 col-sm-11">
@@ -44,7 +39,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
               {% for service in propertydetails %}
 
-              <div class="col">
+              <div class="col-sm-1 col-md-3">
 
                 <div class="card shadow-sm">
                   <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="none" focusable="false" viewBox="0 0 100 100">
@@ -54,6 +49,7 @@
                  
                   <div class="card-body">
                     <h5 class="card-title">{{ service.name|title }}</h5>
+                    <p>Rs. {{service.price}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                        <a href="{% url 'service_details' service.id %}"> <button type="button" class="btn btn-sm btn-outline-secondary" >View</button> </a>
@@ -64,17 +60,12 @@
                         
 
                       </div>
-                      <small id="time" class="text-body-secondary"></small>
                     </div>
                   </div>
+
                 </div>
 
               </div>
-
-
-
-
-
 
 
               {% endfor %}

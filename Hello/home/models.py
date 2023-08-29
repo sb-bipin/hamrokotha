@@ -60,8 +60,10 @@ class Property(models.Model):
     payingmodel = models.CharField(
         max_length=20, choices=payingchoice, default='Monthly')
     descp = models.CharField(max_length=50, default=None)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='property', null=True, blank=True, default=None)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE,
+    #                          related_name='property', null=True, blank=True, default=None)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user',
+                              null=True, blank=True, default=None)
 
     # class Meta:
     #     abstract = True

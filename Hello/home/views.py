@@ -1,7 +1,9 @@
+from django.http import JsonResponse
+import logging
 from .forms import PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
 from tkinter import Image
 from django.shortcuts import get_object_or_404, render, redirect
-
+import pytest
 
 # from .models import RoomsDetails
 from .forms import signupform
@@ -29,39 +31,40 @@ def loginabout(request):
     return render(request, "loginabout.html")
 
 
-def home(request):
-    return render(request, "index.html")
-
-
 # def index(request):
-#     userproperties = Property.objects.all()
-#     return render(request, "index.html", {'userproperties': userproperties})
-    # return HttpResponse("This is the homepage created from Django..! ")
-def index(request):
-    user = request.user
-    userproperties = Property.objects.filter(user=user)
+#     return render(request, "index.html")
+
+
+def home(request):
+    userproperties = Property.objects.filter(owner_id=request.user.id)
     return render(request, "index.html", {'userproperties': userproperties})
 
 
 def services(request):
     filter_type = request.GET.get("filter")
-    print(filter_type)
-    # allimages = Property.objects.all()
+    logging.info(filter_type)
 
-    if (filter_type == "ac"):
-        allimages = Property.objects.filter(
-            rooms__acfan="AC").prefetch_related('rooms').order_by("-id")
-    elif (filter_type == "lowhighprice"):
-        allimages = Property.objects.order_by('price')
-    elif (filter_type == "attachbathroom"):
-        allimages = Property.objects.filter(
-            rooms__attachedbathroom="Yes").prefetch_related('rooms').order_by('-id')
-    else:
-        allimages = Property.objects.all().order_by('-id')
-    return render(request, 'services.html', {'propertydetails': allimages})
+    filter_mapping = {
+        "ac": Property.objects.filter(rooms__acfan="AC").prefetch_related('rooms').order_by("price"),
+        "lowhighprice": Property.objects.order_by('price'),
+        "attachbathroom": Property.objects.filter(rooms__attachedbathroom="Yes").prefetch_related('rooms').order_by('price')
+    }
+
+    allimages = filter_mapping.get(
+        filter_type, Property.objects.all().order_by('-id'))
+
+    response = render(request, 'services.html', {'propertydetails': allimages})
+    return response
 
     # return render(request, "services.html")
     # return HttpResponse("This is the servicespage created from Django..! ")
+
+
+def deleteservice(request, service_id):
+    services = Property.objects.filter(id=service_id)
+    service = get_object_or_404(services, pk=service_id)
+    service.delete()
+    return JsonResponse({'success': True})
 
 
 def service_details(request, service_id):
@@ -72,7 +75,7 @@ def service_details(request, service_id):
 
 
 def logoutService(request):
-    logoutServices = Property.objects.all()[:10]
+    logoutServices = Property.objects.all()[:12]
     return render(request, 'logoutService.html', {'logoutServices': logoutServices})
 
 
@@ -113,46 +116,26 @@ def signup(request):
 
 @csrf_protect
 def Login(request):
-
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'index.html')
+            return redirect('home')
+            # return render(request, 'index.html')
         else:
             return render(request, 'login.html')
     else:
         return render(request, 'login.html')
 
 
-# @csrf_protect
-# def gallery(request):
-#     # dump(gallery)
-#     if request.method == 'POST':
-#         # dump(request)
-#         form = RoomsDetailsForm(request.POST, request.FILES)
-#         if form.is_valid():
-#         # dump(form)
-#         form.save()
-#         messages.success(
-#         request, "Your information is submitted successfully. ")
-#         return HttpResponse('Successfully uploaded')
-#         else:
-#         dump(form)
-#         print(form.errors)
-#         dump(form)
-#         return HttpResponse('Not Successful ')
-#     else:
-#         form = RoomsDetailsForm()
-#     return render(request, "gallery.html", {"form": form})
-
-
 @csrf_protect
 def gallery(request):
     if request.method == 'POST':
         property_form = PropertyDetailsForm(request.POST, request.FILES)
+        property_instance = property_form.save(commit=False)  # Don't save yet
+        property_instance.owner = request.user  # Set the owner to the logged-in user
         property_instance = property_form.save()
         # form_type = request.POST.get('attachedbathroom')
         # form_type=
@@ -162,8 +145,6 @@ def gallery(request):
             form = RoomsDetailsForm(request.POST)
             if form.is_valid():
                 room = form.save(commit=False)
-                # property_id = request.POST.get('property_id')
-                # property_obj = Property.objects.get(id=property_id)
                 room.property = property_instance
                 room.save()
                 messages.success(
@@ -189,40 +170,3 @@ def gallery(request):
         # print(form.errors)
 
     return render(request, 'gallery.html', {'property_form': property_form})
-
-
-# @csrf_protect
-# def gallery(request):
-#     if request.method == 'POST':
-#         property_form = PropertyDetailsForm(request.POST, request.FILES)
-#         rooms_form = RoomsDetailsForm(request.POST)
-#         houses_form = HousesDetailsForm(request.POST)
-
-#         if property_form.is_valid() and rooms_form.is_valid() and houses_form.is_valid():
-#             # Save the Property form data to the database
-#             property_instance = property_form.save()
-#             # Create a Rooms instance without saving to the database
-#             rooms_instance = rooms_form.save(commit=False)
-#             houses_instance = houses_form.save(commit=False)
-
-#             rooms_instance.property = property_instance  # Set the foreign key relationship
-#             houses_instance.property = property_instance
-
-#             rooms_instance.save()  # Save the Rooms instance with the foreign key relationship
-#             houses_instance.save()
-
-#             messages.success(
-#                 request, "Your information is submitted successfully. ")
-#             # Redirect to a success page or another view
-#             # return redirect('property_list')
-#         else:
-#             print(property_form.errors)
-#             print(rooms_form.errors)
-#             print(houses_form.errors)
-
-#     else:
-#         property_form = PropertyDetailsForm()
-#         rooms_form = RoomsDetailsForm()
-#         houses_form = HousesDetailsForm()
-
-#     return render(request, 'gallery.html', {'property_form': property_form, 'rooms_form': rooms_form, 'houses_form': houses_form})
