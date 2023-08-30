@@ -5,4 +5,11 @@ __pycache__/
 home/__pycache__/
 local_settings.py
 db.sqlite3
+<<<<<<< HEAD
 media
+=======
+media
+
+*.gitattributes
+*.po text eol=lf
+>>>>>>> master
