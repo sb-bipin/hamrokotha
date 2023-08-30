@@ -15,30 +15,6 @@ class Contact(models.Model):
         return self.fullname
 
 
-<<<<<<< HEAD
-=======
-class client(models.Model):
-    GENDER_CHOICES = [
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-        ('Others', 'Others'),
-    ]
-
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    contact = models.CharField(max_length=10, message="Enter a valid 10-digit phone number.")
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        
-
-
-
-
-
-
->>>>>>> master
 class Login(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=False),
     username = models.CharField(max_length=122)

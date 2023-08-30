@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-from django.db import models
->>>>>>> master
 from django.http import JsonResponse
 import logging
 from .forms import PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
@@ -48,30 +44,10 @@ def services(request):
     filter_type = request.GET.get("filter")
     logging.info(filter_type)
 
-<<<<<<< HEAD
     filter_mapping = {
         "ac": Property.objects.filter(rooms__acfan="AC").prefetch_related('rooms').order_by("price"),
         "lowhighprice": Property.objects.order_by('price'),
         "attachbathroom": Property.objects.filter(rooms__attachedbathroom="Yes").prefetch_related('rooms').order_by('price')
-=======
-    def get_all_properties():
-        return Property.objects.all().order_by('-id')
-
-    def get_ac_properties():
-        return Property.objects.filter(rooms__acfan=True).select_related('rooms').order_by("price")
-
-    def get_low_high_price_properties():
-        return Property.objects.order_by('price_numeric')
-
-    def get_attached_bathroom_properties():
-        return Property.objects.filter(rooms__attachedbathroom=True).select_related('rooms').order_by('price_numeric')
-
-    filter_mapping = {
-        "": get_all_properties,
-        "ac": get_ac_properties,
-        "lowhighprice": get_low_high_price_properties,
-        "attachbathroom": get_attached_bathroom_properties
->>>>>>> master
     }
 
     allimages = filter_mapping.get(
@@ -84,7 +60,6 @@ def services(request):
     # return HttpResponse("This is the servicespage created from Django..! ")
 
 
-<<<<<<< HEAD
 def deleteservice(request, service_id):
     services = Property.objects.filter(id=service_id)
     service = get_object_or_404(services, pk=service_id)
@@ -96,20 +71,11 @@ def service_details(request, service_id):
     # services = get_object_or_404(Property, id=service_id)
     services = Property.objects.filter(id=service_id)
 
-=======
-def service_details(request, service_id):
-    # services = get_object_or_404(Property, id=service_id)
-    services = Property.objects.filter(id=service_id)
->>>>>>> master
     return render(request, 'service_details.html', {'services': services})
 
 
 def logoutService(request):
     logoutServices = Property.objects.all()[:12]
-<<<<<<< HEAD
-=======
-    # messages.error(request, "Please log in to see more.")
->>>>>>> master
     return render(request, 'logoutService.html', {'logoutServices': logoutServices})
 
 
@@ -157,18 +123,10 @@ def Login(request):
         if user is not None:
             login(request, user)
             return redirect('home')
-<<<<<<< HEAD
             # return render(request, 'index.html')
         else:
             return render(request, 'login.html')
     else:
-=======
-        else:
-            messages.error(request, "Invalid credentials. Please try again.")
-            return render(request, "login.html")
-    else:
-        messages.error(request, "Please login for more details.")
->>>>>>> master
         return render(request, 'login.html')
 
 

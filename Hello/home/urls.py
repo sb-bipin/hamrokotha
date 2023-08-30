@@ -26,10 +26,7 @@ admin.site.index_title = "Welcome to Hamro_Kotha"
 
 
 urlpatterns = [
-<<<<<<< HEAD
     path("deleteservice", views.deleteservice, name='deleteservice'),
-=======
->>>>>>> master
     path("", views.logout, name='logouthome'),
     path("home", views.home, name='home'),
     path("services", views.services, name='services'),
@@ -43,10 +40,6 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('loginabout', views.loginabout, name="loginabout"),
     path('logoutService', views.logoutService, name="logoutService"),
-<<<<<<< HEAD
-=======
-    # path("deleteservice", views.deleteservice, name='deleteservice'),
->>>>>>> master
 
 
 
