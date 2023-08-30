@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% comment %} <div class="bg-info h-100" > {% endcomment %}
+
+{% block title%} Contact
+{% endblock title%}
+
+{% if messages %}
+  {% for message in messages %}
+  
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+   <strong>  {{ message }} </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  {% endfor %}
+  {% endif %}
+
+{% block body %}
+
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+</head>
+
+<body style="background:rgb(150,250,200);">
+
+<div class="container ">
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <div class="contactform  p-5 pt-0 "  style="background-color:rgb(180,220,190);border-radius:5px;"">
+
+    <h1 class="text-center" > Contact Us </h1>
+    <form method="POST" action="/contact">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label" id="email" name="email" >Email address</label>
+      <input required type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    </div>
+    
+    <div class="mb-3">
+        <label for="exampleInputName " class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputDesc" class="form-label" >Tell why you want to contact</label>
+        <input type="text" class="form-control" name="desc" id="desc" required>
+      </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    </div>
+  </div>
+
+   
+</div>
+
+
+
+
+</body>
+
+
+<!--footer-->
+
+<div class='footer mt-5'>
+  {% include 'footer.html' %}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+{% endblock body %}
+
+
+
+

@@ -1,0 +1,122 @@
+
+
+
+{% extends 'base.html' %}
+
+
+
+
+{% block title%} Services
+{% endblock title%}
+
+{% block body %}
+
+    
+
+   <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+        
+      </head>
+    <body  style="background:rgb(150,250,200);">
+        
+
+        <div class="album py-2 bg-body-tertiary">
+
+          <div class="dropdown mb-3 text-right mt-2 col-sm-11">
+            <button type="button" class="btn btn-dark dropdown-toggle rounded-rectangle  " data-bs-toggle="dropdown">
+              Filter 
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="?filter=lowhighprice">Low-High Price</a></li>
+              <li><a class="dropdown-item" href="?filter=ac">AC Only</a></li>
+              <li><a class="dropdown-item"  href="?filter=attachbathroom">Attached Bathroom only </a></li>
+            </ul>
+          </div>
+          
+          <div class="container">
+      
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+              {% for service in propertydetails %}
+
+              <div class="col-sm-1 col-md-3">
+
+                <div class="card shadow-sm">
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="none" focusable="false" viewBox="0 0 100 100">
+                    <image href="{{ service.imgfield.url }}" width="100" height="100" preserveAspectRatio="xMidYMid meet" />
+                  </svg>
+                
+                 
+                  <div class="card-body">
+                    <h5 class="card-title">{{ service.name|title }}</h5>
+                    <p>Rs. {{service.price}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                       <a href="{% url 'service_details' service.id %}"> <button type="button" class="btn btn-sm btn-outline-secondary" >View</button> </a>
+                        
+                       
+                       {% comment %}                           
+                        {% if request.user.is_authenticated and request.user.username == service.user.username %}
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteService('{{ service.id }}')">Delete</button>
+                        {% endif %} {% endcomment %}
+                        
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              {% endfor %}
+            
+          
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class='footer mt-5'>
+          {% include 'footer.html' %}
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    </body>
+    </html>
+    
+
+
+
+
+
+
+
+
+{% endblock body %}
