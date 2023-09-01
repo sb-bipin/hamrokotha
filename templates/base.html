@@ -1,0 +1,115 @@
+
+{% load static %}
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Hamro Kotha | {% block title %}  {% endblock title %} |  </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <style>
+      .navbar-nav li:hover a {
+        font-size: 28px;
+      }
+    </style>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color:rgb(189,183,107);">
+    <div class="container">
+      <a class="navbar-brand " href="/home" style=" font-size:25px; font-weight:bold; font-family:Broadway,Brush Script MT,Times, sans-serif; "> Hamro Kotha </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
+         
+          
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/services" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">  Services</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">Contact Us </a>
+          </li>
+
+          <li class="nav-item">
+
+            <a class="nav-link" href="/gallery" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">Post/Add Data </a>
+          </li> 
+         
+          <li class="nav-item">
+
+            <a class="nav-link" href="/loginabout" style="font-size:22px;font-weight:bold;font-family:Times, sans-serif">About Us </a>
+          </li> 
+         
+
+
+        </ul>
+       
+      </div>
+      <div class="text-end" >
+       <a  href="/logout"> <button type="button" class="btn btn-outline-dark me-2">LogOut</button> </a>
+      </div>
+    
+
+    </div>
+
+    
+
+  </nav>
+
+
+
+  <section id="" class="p-0 text-white sticky-top" style="background-color: #6495ed;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"><img class="fas f" width=15 ></img> Contact: +977-9805762331</div>
+       
+        <div class="col-md-4">
+          {% if request.user.is_authenticated %}
+          Hi, {{ request.user.username }}. Good Morning..!
+          {% endif %}
+        </div>
+
+        
+        <div class="col-md-4">
+          <div class="text-right">
+          Address:  Dhangadhi-4,Kailali
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+  
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+   <strong>  {{ message }} </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  {% endfor %}
+  {% endif %}
+
+{% block body %}  {% endblock body %}
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

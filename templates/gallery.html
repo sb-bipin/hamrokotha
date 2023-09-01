@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% comment %} {% if messages %}
+{% for message in messages %}
+
+<div class="alert alert-{{ message.tags }} alert-dismissible">
+  <strong> {{ message }} </strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+
+{% endfor %}
+{% endif %} {% endcomment %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Hamro Kotha | {% block title %} Gallery {% endblock title %} |</title>
+  <link rel="stylesheet" href="\static\gallery.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+
+<body>
+  {%block body%}
+
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Module Design</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <style>
+          .module {
+              background-color: #f8f9fa;
+              padding: 20px;
+              margin-bottom: 20px;
+              border-radius: 5px;
+          }
+         
+      </style>
+  </head>
+  <body style="background:rgb(150,250,200);">
+      <div class="container mt-5">
+          <div class="row">
+              <div class="col-sm-6 mt-4 ">
+                  <div class="module bg-success">
+                      <p><strong>Click button to add rooms.</strong></p>
+                      <!-- Button to Open the Modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RoomModel">
+                        Add Rooms
+                        </button>
+                  </div>
+              </div>
+
+            <!-- The Modal -->
+            <div class="modal" id="RoomModel">
+                <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Adding Room</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="loginbox ">
+   
+                            <form action="#" method="POST" enctype="multipart/form-data">
+                              {%csrf_token%}
+                        
+                              <label for="id_name">Name:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                              <input type="text" name="name" maxlength="50" required id="id_name"><br><br>
+                        
+                              <label for="id_name">Address:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                              <input type="text" name="address" maxlength="50" required id="id_address"><br><br>
+                        
+                              <label for="id_phone">Phone no.:</label>
+                              <input type="tel" name="phone" maxlength="10" required id="id_phone" pattern="[0-9]{10}">
+                                <br><br>
+
+                              <div class="d-flex">
+                               <label for="id_img" >Image</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                              <input type="file" name="imgfield" accept="image/*" required id="id_img">
+                              </div> <br>
+
+                              <label for="id_name">Price:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                              <input type="number" name="price" maxlength="10" required id="id_price" pattern="[0-9]"><br><br>
+                            
+                              <div class="d-flex">
+                             <label for="id_type">paying Model:&nbsp;</label>
+                              <select style="height:25px" name="payingmodel" required id="id_payingmodel" >
+                                <option label="Select how you want payment" style=""></option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                                <option value="Semi-Annually">Semi-Annually</option>
+                                <option value="Annually">Annually</option>
+                              </select> 
+                            </div><br>
+
+                            <div class="d-flex">
+                              <label for="id_type">Attached Bathroom:&nbsp;</label>
+                               <select style="height:25px" name="attachedbathroom" required id="id_attachedbathroom">
+                                 <option label="Select if bathroom is attached" style=""></option>
+                                 <option value="Yes">Yes</option>
+                                 <option value="No">No</option>
+                                   </select> </div><br>
+                           
+                                   <div class="d-flex">
+                                    <label for="id_type">Wifi Available:&nbsp;</label>
+                                     <select style="height:25px" name="wifiavailable" required id="id_wifiavailable">
+                                       <option label="Select if wifi is available" style=""></option>
+                                       <option value="Yes">Yes</option>
+                                       <option value="No">No</option>
+                                         </select> </div><br>
+
+                                         <div class="d-flex">
+                                          <label for="id_type">A/C or Fan:&nbsp;</label>
+                                           <select style="height:25px" name="acfan" required id="id_acfan">
+                                             <option label="Select which is available" style=""></option>
+                                             <option value="AC">A/C</option>
+                                             <option value="Fan">Fan</option>
+                                               </select> </div><br>
+
+                                               <label for="id_desc">Description</label><br>
+                              <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
+                               </textarea><br><br>
+                        
+                              <button type="submit" name="submit" class="btn btn-primary" >Submit</button>
+                            </form>
+                          </div> 
+                        </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+
+
+
+
+              <div class="col-sm-6 mt-4">
+                  <div class="module bg-info">
+                      <p><strong>Click button to add house.</strong></p>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#HouseModel">
+                  Add House
+                  </button>               
+                   </div>
+              </div>
+
+            <!-- The Modal -->
+            <div class="modal" id="HouseModel">
+              <div class="modal-dialog">
+              <div class="modal-content">
+          
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                  <h4 class="modal-title">Adding Houses</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+          
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                      <div class="loginbox ">
+ 
+                          <form action="#" method="POST" enctype="multipart/form-data">
+                            {%csrf_token%}
+                      
+                            <label for="id_name">Name:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="text" name="name" maxlength="50" required id="id_name"><br><br>
+                      
+                            <label for="id_name">Address:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="text" name="address" maxlength="50" required id="id_address"><br><br>
+                      
+                            <label for="id_phone">Phone no.:</label>
+                            <input type="tel" name="phone" maxlength="10" required id="id_phone" pattern="[0-9]{10}">
+                              <br><br>
+
+                            <div class="d-flex">
+                             <label for="id_img" >Image</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" name="imgfield" accept="image/*" required id="id_img" multiple>
+                            </div> <br>
+
+                            <label for="id_name">Price:</label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                            <input type="number" name="price" maxlength="10" required id="id_price" pattern="[0-9]"><br><br>
+                          
+                            <div class="d-flex">
+                           <label for="id_type">paying Model:&nbsp;</label>
+                            <select style="height:25px" name="payingmodel" required id="id_payingmodel">
+                              <option label="Select how you want payment" style=""></option>
+                              <option value="Monthly">Monthly</option>
+                              <option value="Quarterly">Quarterly</option>
+                              <option value="Semi-Annually">Semi-Annually</option>
+                              <option value="Annually">Annually</option>
+                            </select> 
+                          </div><br>
+                        
+                        
+                          <label for="id_name">House Size:</label>
+                          <input type="number" name="size" maxlength="10" required id="id_size" pattern="[0-9]"><br><br>
+                        
+                          
+                          <label for="id_name">Total Rooms:</label>
+                          <input type="number" name="totalrooms" maxlength="10" required id="id_totalrooms" pattern="[0-9]"><br><br>
+                        
+
+                         
+                                  
+                           <label for="id_desc">Description</label><br>
+                          <textarea row="20" cols="30" name="descp" maxlength="200" required id="id_desc">
+                          </textarea><br><br>
+                          
+                            <button type="submit" name="submit" class="btn btn-primary" >Submit</button>
+                          </form>
+                        </div> 
+                      </div>
+          
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+              <div class="col-sm-6">
+                  <div class="module bg-warning">
+                      <p><strong>Click button to add flat.</strong></p>
+                      <a href="https://www.example.com" class="btn btn-primary">Add Flat</a>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="module bg-secondary ">
+                      <p><strong>Click button to add others.</strong></p>
+                      <a href="https://www.example.com" class="btn btn-primary">Add others</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+  </html>
+  
+
+
+
+<!--footer-->
+
+<div class='footer mt-5'>
+  {% include 'footer.html' %}
+</div>
+
+
+  {% endblock body %}
+
+
+
+
+
+
+</body>
+
+</html>
+
+{% comment %} test content {% endcomment %}
+
+
+

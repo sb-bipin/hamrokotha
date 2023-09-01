@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block title%} Home
+
+{% endblock title%}
+
+{% load static  %}
+
+
+{% block body %}
+<html>
+<head>
+
+  <style> {% include 'HomeBody.css' %}  </style>
+
+</head>
+<body>
+  
+<div class="img" style="background-image: url('..\static\house.png'); " >
+  
+<div class="row align-items-center g-lg-5 py-5 mt-1 "  style="width: 100%; ">
+  
+  <div class="col-lg-7 col-md-3 position-relative  text-center">
+    {% comment %} <img src="..\static\house.png" alt="Image" class="img-fluid d-block d-lg-none ml-2" style="width: 100%;">
+    <img src="..\static\house.png" alt="Image" class="img-fluid d-none d-lg-block ml-2" style="width: 120vh; height: 100vh;">
+     {% endcomment %}
+
+     <h3> Get Your BEST deal here.</h3>
+
+  </div>
+  
+  
+  <div class="col-lg-5 col-md-9 mt-0" style=" ">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="..\static\house3.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="fw-bold w-40 bg-dark">Housing Service</h5>
+          <p>Best houses for you.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="..\static\room1.png" class="d-block w-100 " alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="fw-bold w-40 bg-dark">Room Sevice</h5>
+          <p>Best rooms for you.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="..\static\flat2.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="fw-bold w-40 bg-dark">Flat for family</h5>
+          <p>Best flat for you.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+  
+  {% block content %}
+  <h1 class="text-center">Your Properties</h1>
+ 
+  <div class="album py-2 bg-body-tertiary">
+    
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+        {% for service in userproperties %}
+
+        <div class="col-sm-1 col-md-3">
+
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="none" focusable="false" viewBox="0 0 100 100">
+              <image href="{{ service.imgfield.url }}" width="100" height="100" preserveAspectRatio="xMidYMid meet" />
+            </svg>
+          
+           
+            <div class="card-body">
+              <h5 class="card-title">{{ service.name|title }}</h5>
+              <p>Rs. {{service.price}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                 <a href="{% url 'service_details' service.id %}"> <button type="button" class="btn btn-sm btn-outline-secondary" >View</button> </a>
+                    
+                  <button type="button"  class="btn btn-sm btn-outline-danger mx-2" onclick="deleteService('{{ service.id }}')">Delete</button>
+
+
+                  
+
+                </div>
+                <small id="time" class="text-body-secondary"></small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {%empty%}
+       <ul><li> <p>Sorry !!! No properties added by you.</p> </ul></li>
+        {% endfor %}
+      
+    
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
+
+
+<div class='footer'>
+  {% include 'footer.html' %}
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+ 
+      </script>
+      
+ 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+
+{% endblock body %}
+
+
+
+
+
+
+
+

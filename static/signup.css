@@ -1,0 +1,104 @@
+body {
+     margin: 0;
+     padding: 0;
+     background-color: #8bd8e6;
+     font-family: 'Times New Roman', Times, serif;
+}
+
+
+.container {
+     margin-bottom: 10px;
+}
+
+
+.signinbox {
+     border-radius: 15px;
+     width: 320px;
+     height: 550px;
+     background: #b8a6a6;
+     color: #161515;
+     top: 41%;
+     left: 45%;
+     position: absolute;
+     transform: translate(-40%, -40%);
+     box-sizing: border-box;
+     padding-top: 15px;
+     padding-left: 15px;
+     padding-right: 15px;
+
+     padding-bottom: 5px;
+}
+
+.user {
+     width: 90px;
+     height: 90px;
+     border-radius: 50%;
+     position: absolute;
+     top: -40px;
+     left: calc(50% - 50px);
+}
+
+h1 {
+     margin: 0;
+     padding: 0 0 20px;
+     text-align: center;
+     font-size: 22px;
+     color: rgb(30, 30, 32);
+}
+
+.signinbox p {
+     margin: 0;
+     padding: 0;
+     font-weight: bold;
+}
+
+.signinbox input {
+     width: 100%;
+     margin-bottom: 10px;
+}
+
+.signinbox input[type=text],
+input[type="date"],
+input[type="password"],
+input[type="email"] {
+     border: none;
+     border-bottom: 1px solid #fff;
+     background: transparent;
+     outline: none;
+     height: 40px;
+     color: #1a1818;
+     font-size: 16px;
+}
+
+
+.signinbox input[type="submit"] {
+     border: none;
+     outline: none;
+     height: 40px;
+     background: #ff7200;
+     color: #fff;
+     font-size: 18px;
+     border-radius: 20px;
+}
+
+.signinbox input[type="submit"]:hover {
+     cursor: pointer;
+     background: #ff7200;
+     color: #000;
+}
+
+.signinbox input[type="reset"] {
+     border: none;
+     outline: none;
+     height: 40px;
+     background: #ff7200;
+     color: #fff;
+     font-size: 18px;
+     border-radius: 20px;
+}
+
+.signinbox input[type="reset"]:hover {
+     cursor: pointer;
+     background: #ff7200;
+     color: #000;
+}
