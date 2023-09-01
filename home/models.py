@@ -110,6 +110,8 @@ class Rooms(models.Model):
     # def __str__(self):
     #     return f"Room {self.acfan} - Property: {self.property.name}"
 
+# this is house model.
+
 
 class Houses(models.Model):
     property = models.ForeignKey(
