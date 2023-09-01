@@ -39,7 +39,12 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('loginabout', views.loginabout, name="loginabout"),
     path('logoutService', views.logoutService, name="logoutService"),
-    # path("deleteservice", views.deleteservice, name='deleteservice'),
+    path("client", views.client, name='client'),
+    path("inbox", views.inbox, name='inbox'),
+    path('delete-service/<int:service_id>/',
+         views.delete_service, name='delete_service'),
+
+
 
 
 

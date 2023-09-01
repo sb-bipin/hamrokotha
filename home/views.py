@@ -1,7 +1,9 @@
+from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.db import models
 from django.http import JsonResponse
 import logging
-from .forms import PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
+from .forms import ClientDetailsForm, PropertyDetailsForm, RoomsDetailsForm, HousesDetailsForm
 from tkinter import Image
 from django.shortcuts import get_object_or_404, render, redirect
 import pytest
@@ -12,7 +14,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth import authenticate, login
 from datetime import datetime
 from django.shortcuts import redirect, render, HttpResponse
-from home.models import Contact, Property, Rooms
+from home.models import Contact, Property, Client
 from django.contrib import messages
 from .forms import signupform
 from django.views.decorators.csrf import csrf_protect
@@ -49,9 +51,9 @@ def services(request):
     if filter_type == "ac":
         allimages = Property.objects.filter(rooms__acfan="ac")
     elif filter_type == "lowhighprice":
-        allimages = Property.objects.all().order_by("price")
+        allimages = Property.objects.filter(rooms__wifiavailable="Yes")
     elif filter_type == "attachbathroom":
-        allimages = Property.objects.filter(rooms__attachedbathroom="YES")
+        allimages = Property.objects.filter(rooms__attachedbathroom="Yes")
     else:
         allimages = Property.objects.all().order_by("-id")
 
@@ -163,3 +165,45 @@ def gallery(request):
         # print(form.errors)
 
     return render(request, 'gallery.html', {'property_form': property_form})
+
+
+@csrf_protect
+def client(request):
+    if request.method == "POST":
+        client_form = ClientDetailsForm(request.POST)
+        if client_form.is_valid():
+            client_instance = client_form.save(commit=False)  # Don't save yet
+            client_instance.client = request.user  # Set the owner to the logged-in user
+
+            client_instance = client_form.save()
+            messages.success(
+                request, "Your information is submitted successfully. ")
+        else:
+            messages.success(request, "your data is not valid")
+            print(client_form.errors)
+            return render(request, 'service_details.html', {'client_form': client_form})
+    else:
+        client_form = ClientDetailsForm()
+
+    return render(request, 'service_details.html', {'client_form': client_form})
+    # return HttpResponse("This is the contactpage created from Django..! ")
+
+
+def inbox(request):
+    clientmsg = Client.objects.exclude(client_id=request.user.id)
+    return render(request, 'inbox.html', {'clientmsg': clientmsg})
+
+
+def delete_service(request, service_id):
+    try:
+        service = Property.objects.get(pk=service_id)
+        if service.delete():
+            messages.success(request, "Yur property is deleted successfully.")
+        else:
+            messages.success(
+                request, "Yur property is not deleted.Error in deletion.")
+
+    except Property.DoesNotExist:
+        # Redirect to the page where properties are listed
+        print(service.errors)
+    return redirect('home')

@@ -69,8 +69,10 @@
 
 
 
+    {% for service in services %}
 
 
+    {% if request.user.id != service.owner.id %}
 
 
     <div class="container ">
@@ -79,24 +81,24 @@
           <div class="contactform  p-5 pt-0 "  style="background-color:rgb(180,220,190);border-radius:5px;"">
     
         <h1 class="text-center" > Contact Owner </h1>
-        <form method="POST" action="/contact">
+        <form method="POST" action="/client">
         {% csrf_token %}
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label" id="name" name="name" >Name</label>
-          <input required type="text" class="form-control" id="name" name="name" >
+          <label for="exampleInputName" class="form-label" id="name" name="name" >Name</label>
+          <input required type="text" class="form-control" id="name" name="name"  >
         </div>
         
         <div class="mb-3">
-            <label for="exampleInputName " class="form-label">Address</label>
+            <label for="exampleInputAddress" class="form-label">Address</label>
             <input type="text" class="form-control" id="address" name="address" required>
           </div>
           <div class="mb-3">
-            <label for="exampleInputDesc" class="form-label" >Contact</label>
+            <label for="exampleInputContact" class="form-label" >Contact</label>
             <input type="text" class="form-control" name="contact" id="contact" pattern="[0-9]{10}" required>
           </div>
 
 
-          <div class="form-check-inline">
+        <div class="form-check-inline">
           <label>Gender</label>
           
           <div class="form-check">
@@ -131,7 +133,8 @@
 
 
 
-
+{% endif %}
+{% endfor %}
 
 
 
