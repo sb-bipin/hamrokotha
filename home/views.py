@@ -41,6 +41,8 @@ def home(request):
     return render(request, "index.html", {'userproperties': userproperties})
 
 
+# This is comment
+
 def services(request):
     filter_type = request.GET.get("filter")
 
